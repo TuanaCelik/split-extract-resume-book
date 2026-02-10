@@ -1,0 +1,45 @@
+{
+  "extract": {
+    "json_schema": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string",
+          "description": "An overarching category for the type of document (e.g. invoice, purchase order, etc.)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "A 2-3 sentence summary describing the content of the document"
+        },
+        "key_points": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "A list of key points or insights from the document"
+        }
+      },
+      "required": ["document_type", "summary", "key_points"]
+    },
+    "settings": {
+      "extraction_mode": "PREMIUM",
+      "system_prompt": null,
+      "citation_bbox": true,
+      "use_reasoning": false,
+      "cite_sources": true,
+      "confidence_scores": true
+    }
+  },
+  "split": {
+    "categories": [],
+    "settings": {}
+  },
+  "classify": {
+    "rules": [],
+    "settings": {}
+  },
+  "parse": {
+    "settings": {
+      "tier": "agentic",
+      "version": "latest"
+    }
+  }
+}
