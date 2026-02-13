@@ -3,21 +3,103 @@
     "json_schema": {
       "type": "object",
       "properties": {
-        "document_type": {
-          "type": "string",
-          "description": "An overarching category for the type of document (e.g. invoice, purchase order, etc.)"
+        "full_name": {
+          "type": ["string", "null"],
+          "description": "The candidate's full name"
         },
-        "summary": {
-          "type": "string",
-          "description": "A 2-3 sentence summary describing the content of the document"
+        "email": {
+          "type": ["string", "null"],
+          "description": "Email address"
         },
-        "key_points": {
+        "phone": {
+          "type": ["string", "null"],
+          "description": "Phone number"
+        },
+        "linkedin_url": {
+          "type": ["string", "null"],
+          "description": "LinkedIn profile URL"
+        },
+        "graduation_year": {
+          "type": ["integer", "null"],
+          "description": "Expected or actual graduation year"
+        },
+        "degree": {
+          "type": ["string", "null"],
+          "description": "Degree type (e.g., Bachelor of Science, MBA, PhD)"
+        },
+        "major": {
+          "type": ["string", "null"],
+          "description": "Field of study or major"
+        },
+        "university": {
+          "type": ["string", "null"],
+          "description": "Name of the university or college"
+        },
+        "gpa": {
+          "type": ["number", "null"],
+          "description": "Grade point average if listed"
+        },
+        "work_experience": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "company": {
+                "type": ["string", "null"],
+                "description": "Company or organization name"
+              },
+              "title": {
+                "type": ["string", "null"],
+                "description": "Job title or role"
+              },
+              "start_date": {
+                "type": ["string", "null"],
+                "description": "Start date of employment"
+              },
+              "end_date": {
+                "type": ["string", "null"],
+                "description": "End date of employment, or 'Present' if current"
+              },
+              "description": {
+                "type": ["string", "null"],
+                "description": "Brief description of responsibilities and achievements"
+              }
+            },
+            "required": ["company", "title", "start_date", "end_date", "description"]
+          },
+          "description": "List of work experiences in reverse chronological order"
+        },
+        "skills": {
           "type": "array",
           "items": { "type": "string" },
-          "description": "A list of key points or insights from the document"
+          "description": "Technical and professional skills"
+        },
+        "certifications": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Professional certifications or licenses"
+        },
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Languages spoken"
         }
       },
-      "required": ["document_type", "summary", "key_points"]
+      "required": [
+        "full_name",
+        "email",
+        "phone",
+        "linkedin_url",
+        "graduation_year",
+        "degree",
+        "major",
+        "university",
+        "gpa",
+        "work_experience",
+        "skills",
+        "certifications",
+        "languages"
+      ]
     },
     "settings": {
       "extraction_mode": "PREMIUM",
@@ -29,8 +111,25 @@
     }
   },
   "split": {
-    "categories": [],
-    "settings": {}
+    "categories": [
+      {
+        "name": "resume",
+        "description": "An individual resume or CV containing a person's contact information, education, work experience, and skills"
+      },
+      {
+        "name": "curriculum",
+        "description": "Academic curriculum pages, course listings, program descriptions, or degree requirements"
+      },
+      {
+        "name": "cover_page",
+        "description": "Title page, table of contents, introduction, or other front matter that is not a resume"
+      }
+    ],
+    "settings": {
+      "splitting_strategy": {
+        "allow_uncategorized": false
+      }
+    }
   },
   "classify": {
     "rules": [],

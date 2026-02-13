@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # The name of the collection to use for storing extracted data.
 # When developing locally, this will use the _public collection (shared within the project),
 # otherwise agent data is isolated to each agent.
-EXTRACTED_DATA_COLLECTION: str = "extraction-review"
+EXTRACTED_DATA_COLLECTION: str = "resume-extraction"
 
 
 class ExtractSettings(BaseModel):
